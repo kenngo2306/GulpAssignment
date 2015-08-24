@@ -35,7 +35,18 @@ public class ServletLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("dopost");
-		System.out.println(request.getParameter("email"));
+		String email = request.getParameter("email");
+		
+		if(!Validator.validateNullEmptyString(email))
+		{
+			response.sendError(400,"Invalid email");
+		}
+		else
+		{
+			//do db stuff
+			
+			
+		}
 	}
 
 }
