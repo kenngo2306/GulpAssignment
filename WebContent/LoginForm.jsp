@@ -32,8 +32,11 @@
 					<input type="email" class="form-control" name="email"/>
 				</div>
 				
-				<button type="submit" value = "submit" class= "button btn-primary">Sign in</button>
+				<button type="submit" value = "submit" class= "button btn-primary form-comtrol">Sign in</button>
+				<br>
+				<a href="register" class="button btn-primary form-control">Register</a>
 			</form>
+			
 		</div>
 	</div>
 </body>

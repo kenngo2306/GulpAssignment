@@ -37,14 +37,13 @@ public class ServletLogin extends HttpServlet {
 		System.out.println("dopost");
 		String email = request.getParameter("email");
 		
-		if(!Validator.validateNullEmptyString(email))
+		if(!Validator.validateEmail(email))
 		{
 			response.sendError(400,"Invalid email");
 		}
 		else
 		{
 			//do db stuff
-			
 			
 		}
 	}

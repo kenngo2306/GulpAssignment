@@ -4,6 +4,13 @@ import java.text.SimpleDateFormat;
 
 public class Validator
 {
+	public static boolean validateEmail(String emailStr)
+	{
+		boolean isValid = false;
+		isValid = emailStr.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+		
+		return isValid;
+	}
 	public static boolean validateInt(String numberStr)
 	{
 		boolean isValid = false;
