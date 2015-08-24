@@ -59,7 +59,7 @@ public class Database {
 
 	private ArrayList<Restaurant> getAllRestaurant() {
 		String sql= "Select * from restaurant";
-		
+		ArrayList<Restaurant> restArray= new ArrayList<Restaurant>();
 		ResultSet rs = null;
 		try {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
@@ -70,12 +70,13 @@ public class Database {
 				restObj.setRestaurant_Name(rs.getString(2));
 				restObj.setAddress(rs.getString(3));
 				restObj.setDescription(rs.getString(4));
-				
+				restArray.add(restObj);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return restArray;
 	}
 	
 	private void getRestaurant(int restaurant_id) {
