@@ -17,29 +17,30 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Login</title>
+<title>Rate Restaurant</title>
 </head>
 <body>
-	<div class= "panle panel-primary col-sm-6 col-sm-offset-3">
-		<div class ="panel-heading">
-			Login
-		</div>
-		
+	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
+		<div class="panel-heading">
+			${restaurant_info}
+		</div>>
 		<div class="panel-body">
-			<form role="form" action="Login" method = "POST">
+			<form action="AddReview" method ="POST">
 				<div class="form-group">
-					<label for="email">Email:</label>
-					<input type="email" class="form-control" name="email"/>
+					<label for="stars">Stars:</label>
+					<select name="starts" class="form-control">
+						<option value = "1">1 star</option>
+						
+						<option value = "2">2 stars</option>
+											
+						<option value = "3">3 stars</option>
+											
+						<option value = "4">4 stars</option>
+											
+						<option value = "5">5 stars</option>
+					</select>
 				</div>
-				
-				<div class = "form-group">
-					<button type="submit" value = "submit" class= "btn btn-default" >Sign in</button>
-					
-					<a href="/GulpAssignment/RegisterReviewer.jsp" class= "btn btn-default" >Register</a>
-				</div>
-
 			</form>
-			
 		</div>
 	</div>
 </body>

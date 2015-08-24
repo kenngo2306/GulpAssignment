@@ -17,29 +17,31 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Login</title>
+<title>Register User</title>
 </head>
 <body>
 	<div class= "panle panel-primary col-sm-6 col-sm-offset-3">
 		<div class ="panel-heading">
-			Login
+			Register User
 		</div>
-		
 		<div class="panel-body">
-			<form role="form" action="Login" method = "POST">
+			<form role="form" action=RegisterReviewer method = "POST">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type="name" class="form-control" name="name"/>
+				</div>
 				<div class="form-group">
 					<label for="email">Email:</label>
 					<input type="email" class="form-control" name="email"/>
 				</div>
-				
-				<div class = "form-group">
-					<button type="submit" value = "submit" class= "btn btn-default" >Sign in</button>
-					
-					<a href="/GulpAssignment/RegisterReviewer.jsp" class= "btn btn-default" >Register</a>
+				<div class="form-group">
+					<label for="zipcode">ZipCode:</label>
+					<input type="zipcode" class="form-control" name="zipcode"/>
 				</div>
-
-			</form>
+				
+				<button type="submit" value = "submit" class= "button btn-primary form-comtrol">Sign in</button>
 			
+			</form>
 		</div>
 	</div>
 </body>
