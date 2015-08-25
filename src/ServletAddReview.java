@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ServletRegisterReviewer
+ * Servlet implementation class ServletAddReview
  */
-@WebServlet("/RegisterReviewer")
-public class ServletRegisterReviewer extends HttpServlet {
+@WebServlet("/AddReview")
+public class ServletAddReview extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletRegisterReviewer() {
+    public ServletAddReview() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,36 +36,33 @@ public class ServletRegisterReviewer extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("dopost");
+//		System.out.println("restaurant_id = " + request.getParameter("restaurant_id"));
+		String restaurant_idStr = request.getParameter("restaurant_id");
+		String description = request.getParameter("description");
+		String starsStr = request.getParameter("stars");
 		
-		//get parameters
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
-		String zipcode = request.getParameter("zipcode");
-		Reviewer reviewer = new Reviewer();
-		Database db = new Database();
-		
-		//validate inputs
-		if(!Validator.validateNullEmptyString(name) || !Validator.validateNullEmptyString(email) || !Validator.validateNullEmptyString(zipcode))
+		if(!Validator.validateInt(restaurant_idStr) || !Validator.validateIntWithRange(starsStr, 1, 5))
 		{
-			response.sendError(400,"Invalid Inputs!");
+			response.sendError(400,"Invalid Input");
 		}
 		else
 		{
-			System.out.println(name + email + zipcode);
-			reviewer.setEmail(email);
-			reviewer.setReviewer_Name(name);
-			reviewer.setZipcode(zipcode);
-			db.addReviewer(reviewer);
+			//insert rating
 			
-			//get the reviewer id
-			reviewer = db.getReviewer(reviewer.getEmail());
+			//get session's user id
 			HttpSession session = request.getSession();
+			int reviewer_id = (int)session.getAttribute("reviewer_id");
+			Database db = new Database();
 			
-			session.setAttribute("reviewer_id", reviewer.getReviewer_id());
-			getServletContext().getRequestDispatcher("/RestaurantList").forward(request, response);
+			Ratings rating = new Ratings();
+			rating.setDescription(description);
+			rating.setRestaurant_id(Integer.parseInt(restaurant_idStr));
+			rating.setStars(Integer.parseInt(starsStr));
+			rating.setUser_id(reviewer_id);
+			
+			db.addRating(rating);
 		}
-		
-		
 	}
 
 }
