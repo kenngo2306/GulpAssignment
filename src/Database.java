@@ -128,7 +128,7 @@ public class Database {
 	
 	public void addRestaurant(Restaurant newRestaurant) {
 		String sql= "Insert into restaurant(RESTAURANT_NAME,ADDRESS,Description) values(?, ?, ?)";
-
+		openConnection();
 		try {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
 			preStatement.setString(1, newRestaurant.getRestaurant_Name());

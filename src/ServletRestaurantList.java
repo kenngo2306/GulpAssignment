@@ -87,7 +87,13 @@ public class ServletRestaurantList extends HttpServlet {
 			tableData += restaurant.getAddress();
 			tableData += "</td>";
 			tableData += "<td>";
-			tableData += "<a href='RestaurantRatings?restaurant_id=" + restaurant.getRestaurant_id() + "'>" + restaurant.getAvgRating() + "</a>";
+			tableData += "<a href='RestaurantRatings?restaurant_id=" + restaurant.getRestaurant_id() + "'>";
+					//input starts instead of words
+					for(int i = 1; i <= restaurant.getAvgRating(); i ++)
+					{
+						tableData += "&#9733;";
+					}
+			tableData += "</a>";
 			tableData += "</td>";
 			
 			//check if user has ever rated the restaurant

@@ -17,35 +17,9 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Restaurant List</title>
+<title>Ratings</title>
 </head>
 <body>
-	<nav class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">GULP!</a>
-	    </div>
-	    <div>
-	      <ul class="nav navbar-nav">
-	      	<li><a href="RestaurantList">Restaurant List</a></li>
-	      	<li><a href="/GulpAssignment/RegisterRestaurant.jsp">Register a Restaurant</a></li>
-    	    <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User name<span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li><a href="Profile">Profile</a></li>
-		            <li role="separator" class="divider"></li>
-       				<li><a href="Logout">Log out</a>
-		          </ul>
-	        </li>
-			
-
-
-	      </ul>
-	    </div>
-	  </div>
-	</nav>
-	<table class="table table-bordered table-striped">
-		${tableData}
-	</table>
+	${ratingData}
 </body>
 </html>
