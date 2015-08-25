@@ -1,3 +1,5 @@
+import java.util.Date;
+
 
 public class Ratings {
 	
@@ -6,7 +8,7 @@ public class Ratings {
 	private int user_id;
 	private int stars;
 	private String description;
-	private String reviewDate;
+	private Date reviewDate;
 	
 	public int getRating_id() {
 		return rating_id;
@@ -38,10 +40,10 @@ public class Ratings {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getReviewDate() {
+	public Date getReviewDate() {
 		return reviewDate;
 	}
-	public void setReviewDate(String reviewDate) {
+	public void setReviewDate(Date reviewDate) {
 		this.reviewDate = reviewDate;
 	}
 }
