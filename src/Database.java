@@ -72,7 +72,7 @@ public class Database {
 					+ " NVL((SELECT STARS FROM RATINGS WHERE USER_ID = ? and "
 					+ "RESTAURANT_ID = rs.RESTAURANT_ID),0) AS USER_RATING FROM restaurant rs "
 					+ "Left outer JOIN ratings ra ON rs.RESTAURANT_ID=ra.RESTAURANT_ID"
-					+ " group by rs.RESTAURANT_ID, rs.RESTAURANT_NAME, rs.ADDRESS, rs.Description";
+					+ " group by rs.RESTAURANT_ID, rs.RESTAURANT_NAME, rs.ADDRESS, rs.Description order by AVERAGE desc";
 		ArrayList<Restaurant> restArray= new ArrayList<Restaurant>();
 		ResultSet rs = null;
 		try {
@@ -142,7 +142,7 @@ public class Database {
 	}
 	
 	public ArrayList<Ratings> getRatings(int restaurant_id) {
-		String sql= "select * from ratings where RESTAURANT_ID=?";
+		String sql= "select * from ratings where RESTAURANT_ID=? order by REVIEWDATE desc";
 		ArrayList<Ratings> ratingArray= new ArrayList<Ratings>();
 		ResultSet rs = null;
 		try {
