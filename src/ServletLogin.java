@@ -1,11 +1,13 @@
 
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServletLogin
@@ -36,7 +38,8 @@ public class ServletLogin extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("dopost");
 		String email = request.getParameter("email");
-		
+		System.out.println("email = "  + email);
+
 		if(!Validator.validateEmail(email))
 		{
 			response.sendError(400,"Invalid email");
@@ -44,6 +47,27 @@ public class ServletLogin extends HttpServlet {
 		else
 		{
 			//do db stuff
+			Database db = new Database();
+			Reviewer reviewer = db.getReviewer(email);
+			
+			if(reviewer.getEmail().trim().equals(""))
+			{
+				System.out.println("login failed");
+				String error= "Invalid Credential";
+				request.setAttribute("error", error);
+				getServletContext().getRequestDispatcher("/LoginForm.jsp").forward(request, response);
+				
+			}
+			else
+			{
+				System.out.println("login success");
+				HttpSession session = request.getSession();
+				session.setAttribute("reviewer_id", reviewer.getReviewer_id());
+				getServletContext().getRequestDispatcher("/RestaurantList").forward(request, response);
+			}
+			
+			
+			
 			
 		}
 	}

@@ -1,3 +1,4 @@
+
 import java.sql.*;
 import java.util.*;
 
@@ -27,13 +28,15 @@ public class Database {
 	}
 
 	public Reviewer getReviewer(String email) {
-		String sql= "Select * from reviewer where email ='?'";
-		
+		String sql= "Select * from reviewer where email= ? ";
+		System.out.println(sql);
+		reviewerObj = new Reviewer();
 		ResultSet rs = null;
 		try {
+			openConnection();
 			PreparedStatement preStatement = conn.prepareStatement(sql);
 			preStatement.setString(1, email);
-			rs=preStatement.executeQuery(sql);
+			rs=preStatement.executeQuery();
 			if(rs.next()){
 				reviewerObj= new Reviewer();
 				reviewerObj.setEmail(email);
@@ -172,3 +175,4 @@ public class Database {
 	}
 
 }
+

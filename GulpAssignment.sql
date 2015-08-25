@@ -1,3 +1,4 @@
+
 Create table Restaurant( restaurant_id Number(10) Primary Key,
 Restaurant_Name varchar2(255),
 address Varchar2(255),
@@ -66,6 +67,7 @@ END;
 Insert into reviewer(REVIEWER_NAme,EMAIL,ZIPCODE) values('Ken', 'ken@infosys.com', '020877');
 Insert into reviewer(REVIEWER_NAme,EMAIL,ZIPCODE) values('Viki', 'viki@infosys.com', '020877');
 
+alter table ratings add REVIEWDATE DATE;
 Insert into ratings(RESTAURANT_ID,USER_ID,Stars,description,REVIEWDATE) values(1,1,4,'great food',TO_DATE('08/02/2015','MM/DD/YYYY'));
 Insert into ratings(RESTAURANT_ID,USER_ID,Stars,description,REVIEWDATE) values(2,1,5,'great service',TO_DATE('08/02/2015','MM/DD/YYYY'));
 
@@ -95,28 +97,3 @@ ON rs.RESTAURANT_ID=ra.RESTAURANT_ID group by rs.RESTAURANT_ID,
   rs.RESTAURANT_NAME,
   rs.ADDRESS,
   rs.Description;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

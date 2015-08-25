@@ -20,12 +20,17 @@
 <title>Login</title>
 </head>
 <body>
+	
 	<div class= "panle panel-primary col-sm-6 col-sm-offset-3">
 		<div class ="panel-heading">
 			Login
+			
 		</div>
 		
 		<div class="panel-body">
+			<div class="alert alert-danger" role="alert">
+				${error}
+			</div>
 			<form role="form" action="Login" method = "POST">
 				<div class="form-group">
 					<label for="email">Email:</label>

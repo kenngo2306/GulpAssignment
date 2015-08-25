@@ -1,10 +1,10 @@
 
 public class Reviewer {
 
-	private int Reviewer_id;
-	private String Reviewer_Name;
-	private String email;
-	private String zipcode;
+	private int Reviewer_id = 0;
+	private String Reviewer_Name = "";
+	private String email = "" ;
+	private String zipcode="";
 	
 	public int getReviewer_id() {
 		return Reviewer_id;
