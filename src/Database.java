@@ -51,6 +51,30 @@ public class Database {
 		return reviewerObj;
 	}
 	
+	public Reviewer getReviewer(int reviewer_id) {
+		String sql= "Select * from reviewer where REVIEWER_ID= ? ";
+		System.out.println(sql);
+		reviewerObj = new Reviewer();
+		ResultSet rs = null;
+		try {
+			openConnection();
+			PreparedStatement preStatement = conn.prepareStatement(sql);
+			preStatement.setInt(1, reviewer_id);
+			rs=preStatement.executeQuery();
+			if(rs.next()){
+				reviewerObj= new Reviewer();
+				reviewerObj.setEmail(rs.getString(3));
+				reviewerObj.setReviewer_id(rs.getInt(1));
+				reviewerObj.setReviewer_Name(rs.getString(2));
+				reviewerObj.setZipcode(rs.getString(4));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return reviewerObj;
+	}
+	
 	public void addReviewer(Reviewer user) {
 		String sql= "Insert into reviewer(REVIEWER_NAME,EMAIL,ZIPCODE) values(?, ?, ?)";
 
