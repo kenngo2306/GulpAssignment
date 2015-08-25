@@ -150,6 +150,7 @@ public class Database {
 			preStatement.setInt(1, restaurant_id);
 			rs=preStatement.executeQuery();
 			while(rs.next()){
+				ratingObj = new Ratings();
 				ratingObj.setRating_id(rs.getInt(1));
 				ratingObj.setRestaurant_id(rs.getInt(2));
 				ratingObj.setUser_id(rs.getInt(3));
