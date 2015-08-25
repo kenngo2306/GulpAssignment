@@ -20,7 +20,7 @@
 <title>Restaurant List</title>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar-default-inverse">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="#">GULP!</a>

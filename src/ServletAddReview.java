@@ -62,7 +62,10 @@ public class ServletAddReview extends HttpServlet {
 			rating.setUser_id(reviewer_id);
 			
 			db.addRating(rating);
+			
+			getServletContext().getRequestDispatcher("/RestaurantList").forward(request, response);
 		}
+		
 	}
 
 }
