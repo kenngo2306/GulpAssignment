@@ -35,14 +35,16 @@ public class Database {
 
 	}
 
-	private Reviewer getReviewer(String email) {
-		String sql= "Select * from reviewer where email ='?'";
-		
+	public Reviewer getReviewer(String email) {
+		String sql= "Select * from reviewer where email=?";
+		System.out.println(sql);
+		reviewerObj = new Reviewer();
 		ResultSet rs = null;
 		try {
+			openConnection();
 			PreparedStatement preStatement = conn.prepareStatement(sql);
 			preStatement.setString(1, email);
-			rs=preStatement.executeQuery(sql);
+			rs=preStatement.executeQuery();
 			if(rs.next()){
 				reviewerObj= new Reviewer();
 				reviewerObj.setEmail(email);
@@ -57,7 +59,7 @@ public class Database {
 		return reviewerObj;
 	}
 
-	private ArrayList<Restaurant> getAllRestaurant() {
+	public ArrayList<Restaurant> getAllRestaurant() {
 		String sql= "Select * from restaurant";
 		ArrayList<Restaurant> restArray= new ArrayList<Restaurant>();
 		ResultSet rs = null;
@@ -79,7 +81,7 @@ public class Database {
 		return restArray;
 	}
 	
-	private void getRestaurant(int restaurant_id) {
+	public void getRestaurant(int restaurant_id) {
 		String sql= "Select * from restaurant where restaurant_id =?";
 		
 		ResultSet rs = null;
