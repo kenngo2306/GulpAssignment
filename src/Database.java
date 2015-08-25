@@ -52,14 +52,14 @@ public class Database {
 	}
 	
 	public void addReviewer(Reviewer user) {
-		String sql= "Insert into reviewer(REVIEWER_NAME,EMAIL,ZIPCODE) values('?', '?', '?')";
+		String sql= "Insert into reviewer(REVIEWER_NAME,EMAIL,ZIPCODE) values(?, ?, ?)";
 
 		try {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
 			preStatement.setString(1, user.getReviewer_Name());
 			preStatement.setString(2, user.getEmail());
 			preStatement.setString(3, user.getZipcode());
-			preStatement.executeQuery(sql);
+			preStatement.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -78,7 +78,7 @@ public class Database {
 		try {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
 			preStatement.setInt(1, reviewerId);
-			rs=preStatement.executeQuery(sql);
+			rs=preStatement.executeQuery();
 			while(rs.next()){
 				restObj=new Restaurant();
 				restObj.setRestaurant_id(rs.getInt(1));
@@ -106,7 +106,7 @@ public class Database {
 		try {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
 			preStatement.setInt(1, restaurant_id);
-			rs=preStatement.executeQuery(sql);
+			rs=preStatement.executeQuery();
 			if(rs.next()){
 				restObj.setRestaurant_id(restaurant_id);
 				restObj.setRestaurant_Name(rs.getString(2));
@@ -123,14 +123,14 @@ public class Database {
 	}
 	
 	public void addRestaurant(Restaurant newRestaurant) {
-		String sql= "Insert into restaurant(RESTAURANT_NAME,ADDRESS,Description) values('?', '?', '?')";
+		String sql= "Insert into restaurant(RESTAURANT_NAME,ADDRESS,Description) values(?, ?, ?)";
 
 		try {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
 			preStatement.setString(1, newRestaurant.getRestaurant_Name());
 			preStatement.setString(2, newRestaurant.getAddress());
 			preStatement.setString(3, newRestaurant.getDescription());
-			preStatement.executeQuery(sql);
+			preStatement.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -139,7 +139,7 @@ public class Database {
 	
 	
 	public void addRating(Ratings newRating) {
-		String sql= "Insert into ratings(RESTAURANT_ID,USER_ID,Stars,description,REVIEWDATE) values(?, ?, ?,'?',TO_DATE('?','MM/DD/YYYY'))";
+		String sql= "Insert into ratings(RESTAURANT_ID,USER_ID,Stars,description,REVIEWDATE) values(?, ?, ?,?,TO_DATE(?,'MM/DD/YYYY'))";
 
 		try {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
@@ -148,7 +148,7 @@ public class Database {
 			preStatement.setInt(3, newRating.getStars());
 			preStatement.setString(4, newRating.getDescription());
 			preStatement.setString(5, newRating.getReviewDate());
-			preStatement.executeQuery(sql);
+			preStatement.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -162,7 +162,7 @@ public class Database {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
 			preStatement.setInt(1, reviewerId);
 			preStatement.setInt(2, restaurant_id);
-			rs=preStatement.executeQuery(sql);
+			rs=preStatement.executeQuery();
 			if(rs.next()){
 				return true;
 			}
