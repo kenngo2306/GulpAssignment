@@ -113,7 +113,7 @@ public class Database {
 				restObj.setAddress(rs.getString(3));
 				restObj.setDescription(rs.getString(4));
 				restObj.setAvgRating(rs.getInt(5));
-				restObj.setUser_rating(rs.getInt(6));
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -137,9 +137,32 @@ public class Database {
 		}
 	}
 	
-	
+	public ArrayList<Ratings> getRatings(int restaurant_id) {
+		String sql= "select * from ratings where RESTAURANT_ID=?";
+		ArrayList<Ratings> ratingArray= new ArrayList<Ratings>();
+		ResultSet rs = null;
+		try {
+			PreparedStatement preStatement = conn.prepareStatement(sql);
+			preStatement.setInt(1, restaurant_id);
+			rs=preStatement.executeQuery();
+			while(rs.next()){
+				ratingObj.setRating_id(rs.getInt(1));
+				ratingObj.setRestaurant_id(rs.getInt(2));
+				ratingObj.setUser_id(rs.getInt(3));
+				ratingObj.setStars(rs.getInt(4));
+				ratingObj.setDescription(rs.getString(5));
+				ratingObj.setReviewDate(rs.getDate(6));
+				ratingArray.add(ratingObj);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ratingArray;
+	}
 	public void addRating(Ratings newRating) {
-		String sql= "Insert into ratings(RESTAURANT_ID,USER_ID,Stars,description,REVIEWDATE) values(?, ?, ?,?,TO_DATE(?,'MM/DD/YYYY'))";
+		String sql= "Insert into ratings(RESTAURANT_ID,USER_ID,Stars,description,REVIEWDATE) values(?, ?, ?,?,SYSDATE)";
 
 		try {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
@@ -147,7 +170,7 @@ public class Database {
 			preStatement.setInt(2, newRating.getUser_id());
 			preStatement.setInt(3, newRating.getStars());
 			preStatement.setString(4, newRating.getDescription());
-			preStatement.setString(5, newRating.getReviewDate());
+			
 			preStatement.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
