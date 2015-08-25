@@ -20,7 +20,7 @@
 <title>Restaurant List</title>
 </head>
 <body>
-	${reviewer_id}
+	
 	<table class="table table-bordered table-striped">
 		${tableData}
 	</table>

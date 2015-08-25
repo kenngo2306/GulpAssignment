@@ -101,19 +101,23 @@ public class Database {
 				+ "NVL(avg(stars),0) AS AVERAGE FROM restaurant rs Left outer JOIN ratings ra "
 				+ "ON rs.RESTAURANT_ID=ra.RESTAURANT_ID where rs.RESTAURANT_ID =? "
 				+ "group by rs.RESTAURANT_ID, rs.RESTAURANT_NAME, rs.ADDRESS, rs.Description";
+		System.out.println(sql);
 		
 		ResultSet rs = null;
 		try {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
 			preStatement.setInt(1, restaurant_id);
 			rs=preStatement.executeQuery();
+			restObj = new Restaurant();
 			if(rs.next()){
-				restObj.setRestaurant_id(restaurant_id);
+				
+				System.out.println("restaurnat_id = " + restaurant_id);
+				restObj.setRestaurant_id(rs.getInt(1));
 				restObj.setRestaurant_Name(rs.getString(2));
 				restObj.setAddress(rs.getString(3));
 				restObj.setDescription(rs.getString(4));
 				restObj.setAvgRating(rs.getInt(5));
-				restObj.setUser_rating(rs.getInt(6));
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -139,7 +143,7 @@ public class Database {
 	
 	
 	public void addRating(Ratings newRating) {
-		String sql= "Insert into ratings(RESTAURANT_ID,USER_ID,Stars,description,REVIEWDATE) values(?, ?, ?,?,TO_DATE(?,'MM/DD/YYYY'))";
+		String sql= "Insert into ratings(RESTAURANT_ID,USER_ID,Stars,description,REVIEWDATE) values(?, ?, ?,?,SYSDATE)";
 
 		try {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
@@ -147,7 +151,7 @@ public class Database {
 			preStatement.setInt(2, newRating.getUser_id());
 			preStatement.setInt(3, newRating.getStars());
 			preStatement.setString(4, newRating.getDescription());
-			preStatement.setString(5, newRating.getReviewDate());
+			
 			preStatement.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
