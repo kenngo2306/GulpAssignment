@@ -1,11 +1,13 @@
 
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServletLogin
@@ -44,6 +46,11 @@ public class ServletLogin extends HttpServlet {
 		else
 		{
 			//do db stuff
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("reviewer_id", 1);
+			
+			getServletContext().getRequestDispatcher("/RestaurantList.jsp").forward(request, response);
 			
 		}
 	}
