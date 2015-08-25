@@ -70,6 +70,7 @@ Insert into reviewer(REVIEWER_NAme,EMAIL,ZIPCODE) values('Viki', 'viki@infosys.c
 alter table ratings add REVIEWDATE DATE;
 Insert into ratings(RESTAURANT_ID,USER_ID,Stars,description,REVIEWDATE) values(1,1,4,'great food',TO_DATE('08/02/2015','MM/DD/YYYY'));
 Insert into ratings(RESTAURANT_ID,USER_ID,Stars,description,REVIEWDATE) values(2,1,5,'great service',TO_DATE('08/02/2015','MM/DD/YYYY'));
+Insert into ratings(RESTAURANT_ID,USER_ID,Stars,description,REVIEWDATE) values(2,1,5,'great service',sysdate);
 
 Select * from reviewer where email = 'ken@infosys.com';
 
@@ -89,11 +90,14 @@ SELECT rs.RESTAURANT_ID,
   rs.RESTAURANT_NAME,
   rs.ADDRESS,
   rs.Description,
-  avg(stars) AS AVERAGE,
+  Nvl(avg(stars),0) AS AVERAGE,
   NVL((SELECT STARS FROM RATINGS WHERE USER_ID = 2 and RESTAURANT_ID = rs.RESTAURANT_ID),0) AS USER_RATING
 FROM restaurant rs
 left outer JOIN ratings ra
 ON rs.RESTAURANT_ID=ra.RESTAURANT_ID group by rs.RESTAURANT_ID,
   rs.RESTAURANT_NAME,
   rs.ADDRESS,
-  rs.Description;
+  rs.Description
+  order by AVERAGE desc;
+
+select * from ratings where RESTAURANT_ID=2 order by REVIEWDATE desc;
