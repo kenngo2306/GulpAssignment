@@ -17,35 +17,44 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Restaurant List</title>
+<title>Register Restaurant</title>
 </head>
 <body>
-	<nav class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">GULP!</a>
-	    </div>
-	    <div>
-	      <ul class="nav navbar-nav">
-	      	<li><a href="RestaurantList">Restaurant List</a></li>
-	      	<li><a href="/GulpAssignment/RegisterRestaurant.jsp">Register a Restaurant</a></li>
-    	    <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User name<span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li><a href="Profile">Profile</a></li>
-		            <li role="separator" class="divider"></li>
-       				<li><a href="Logout">Log out</a>
-		          </ul>
-	        </li>
+	
+	<div class= "panle panel-primary col-sm-6 col-sm-offset-3">
+		<div class ="panel-heading">
+		
+			New Restaurant
 			
+		</div>
+		
+		<div class="panel-body">
+			${message}
+			<form role="form" action="RegisterRestaurant" method = "POST">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type="text" class="form-control" name="name" required/>
+				</div>
+				
+				<div class="form-group">
+					<label for="address">Address:</label>
+					<input type="text" class="form-control" name="address" required/>
+				</div>
+				
+				<div class="form-group">
+					<label for="description">Description:</label>
+					<input type="text" class="form-control" name="description" required/>
+				</div>
+				
+				<div class = "form-group">
+					<button type="submit" value = "submit" class= "btn btn-default" >Register</button>
+					
+					
+				</div>
 
-
-	      </ul>
-	    </div>
-	  </div>
-	</nav>
-	<table class="table table-bordered table-striped">
-		${tableData}
-	</table>
+			</form>
+			
+		</div>
+	</div>
 </body>
 </html>
