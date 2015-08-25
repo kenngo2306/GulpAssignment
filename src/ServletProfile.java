@@ -45,17 +45,35 @@ public class ServletProfile extends HttpServlet {
 		
 		System.out.println("reviewer = " + reviewer_id);
 		Database db = new Database();
+		db.openConnection();
+		Reviewer reviewer = db.getReviewer(reviewer_id);
 		
+		String reviewerData = "";
+		reviewerData += "<div class='panel panel-primary col-sm-8'>";
+		reviewerData += "<div class='panel-heading'>";	
+		reviewerData +=	"Name: " + reviewer.getReviewer_Name();
+		reviewerData += "</div>";
+		
+		reviewerData += "<div class='panel-body'>";	
+		reviewerData +=	"Email: " + reviewer.getEmail();
+		reviewerData += "<br>";
+		reviewerData +=	"Zipcode: " + reviewer.getZipcode();
+		reviewerData += "</div>";		
+		reviewerData += "</div>";
+		
+		request.setAttribute("reviewerData", reviewerData);
 		
 		ArrayList<Ratings> ratings = db.getRatingsByUser(reviewer_id);
 		String ratingData = "";
 		for(Ratings rating : ratings)
 		{
-			ratingData += "<div class='panel panel-warning col-sm-6 col-sm-offset-3'>";
+			Restaurant restaurant = db.getRestaurant(rating.getRestaurant_id());
+					
+			ratingData += "<div class='panel panel-info col-sm-6 col-sm-offset-3'>";
 			ratingData += "<div class='panel-heading'>";	
 			ratingData += "<div class='row'>";
-			ratingData += "<div class='col-sm-4'> UserID:";
-			ratingData += rating.getUser_id();
+			ratingData += "<div class='col-sm-4'> Restaurant:";
+			ratingData += restaurant.getRestaurant_Name();
 			ratingData += "</div>";
 			ratingData += "<div class='col-sm-4'> Rating:";
 			ratingData += rating.getStars();
@@ -70,7 +88,7 @@ public class ServletProfile extends HttpServlet {
 			ratingData += "</div>";		
 			ratingData += "</div>";
 		}
-		
+		db.closeConnection();
 		request.setAttribute("ratingData", ratingData);
 		getServletContext().getRequestDispatcher("/Profile.jsp").forward(request, response);
 	}

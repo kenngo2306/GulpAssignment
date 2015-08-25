@@ -192,12 +192,13 @@ public class Database {
 	}
 	
 	public ArrayList<Ratings> getRatingsByUser(int reviewer_id) {
-		String sql= "select * from ratings where user_id=? order by REVIEWDATE desc;";
+		String sql= "select * from ratings where user_id=? order by REVIEWDATE desc";
 		ArrayList<Ratings> ratingbyUser= new ArrayList<Ratings>();
 		ResultSet rs = null;
 		try {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
 			preStatement.setInt(1, reviewer_id);
+			System.out.println(sql);
 			rs=preStatement.executeQuery();
 			while(rs.next()){
 				ratingObj = new Ratings();
@@ -250,6 +251,18 @@ public class Database {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public void closeConnection()
+	{
+		try
+		{
+			conn.close();
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
