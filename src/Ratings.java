@@ -6,6 +6,7 @@ public class Ratings {
 	private int user_id;
 	private int stars;
 	private String description;
+	private String reviewDate;
 	
 	public int getRating_id() {
 		return rating_id;
@@ -36,5 +37,11 @@ public class Ratings {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getReviewDate() {
+		return reviewDate;
+	}
+	public void setReviewDate(String reviewDate) {
+		this.reviewDate = reviewDate;
 	}
 }

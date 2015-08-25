@@ -1,3 +1,4 @@
+
 Create table Restaurant( restaurant_id Number(10) Primary Key,
 Restaurant_Name varchar2(255),
 address Varchar2(255),
@@ -47,6 +48,8 @@ Insert into restaurant(RESTAURANT_NAME,ADDRESS,Description) values('Costal Flats
 
 Insert into restaurant(RESTAURANT_NAME,ADDRESS,Description) values('Fortina Grill', 'Kings Farm, Gaithersburg, MD', 'Italian restaurant');
 
+Insert into restaurant(RESTAURANT_NAME,ADDRESS,Description) values('Panida', 'College Road', 'Thai food restaurant');
+
 CREATE OR REPLACE TRIGGER Reviewer_Trigger
  BEFORE INSERT ON Reviewer
   FOR EACH ROW
@@ -70,4 +73,27 @@ Insert into ratings(RESTAURANT_ID,USER_ID,Stars,description,REVIEWDATE) values(2
 
 Select * from reviewer where email = 'ken@infosys.com';
 
-Select * from restaurant;
+--SELECT rs.RESTAURANT_ID,
+--  rs.RESTAURANT_NAME,
+--  rs.ADDRESS,
+--  rs.Description,
+--  NVL(avg(stars),0)
+--FROM restaurant rs
+--JOIN ratings ra
+--ON rs.RESTAURANT_ID=ra.RESTAURANT_ID where ra.USER_ID = 2 group by rs.RESTAURANT_ID,
+--  rs.RESTAURANT_NAME,
+--  rs.ADDRESS,
+--  rs.Description;
+
+SELECT rs.RESTAURANT_ID,
+  rs.RESTAURANT_NAME,
+  rs.ADDRESS,
+  rs.Description,
+  avg(stars) AS AVERAGE,
+  NVL((SELECT STARS FROM RATINGS WHERE USER_ID = 2 and RESTAURANT_ID = rs.RESTAURANT_ID),0) AS USER_RATING
+FROM restaurant rs
+left outer JOIN ratings ra
+ON rs.RESTAURANT_ID=ra.RESTAURANT_ID group by rs.RESTAURANT_ID,
+  rs.RESTAURANT_NAME,
+  rs.ADDRESS,
+  rs.Description;
