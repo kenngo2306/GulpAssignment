@@ -79,7 +79,7 @@ public class ServletRestaurantList extends HttpServlet {
 			tableData += restaurant.getRestaurant_id();
 			tableData += "</td>";
 			tableData += "<td>";
-			tableData += restaurant.getRestaurant_Name();
+			tableData += "<a href='EditRestaurant?restaurant_id= "+ restaurant.getRestaurant_id() +"'>"+ restaurant.getRestaurant_Name() +"</a>";
 			tableData += "</td>";
 			tableData += "<td>";
 			tableData += restaurant.getDescription();

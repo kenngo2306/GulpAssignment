@@ -58,6 +58,8 @@ public class ServletProfile extends HttpServlet {
 		reviewerData +=	"Email: " + reviewer.getEmail();
 		reviewerData += "<br>";
 		reviewerData +=	"Zipcode: " + reviewer.getZipcode();
+		reviewerData += "<br>";
+		reviewerData += "<a href='EditProfile'><span class='glyphicon glyphicon-pencil'></span>Edit</a>";
 		reviewerData += "</div>";		
 		reviewerData += "</div>";
 		
