@@ -36,7 +36,9 @@ body {
 	    </div>
 	    <div>
 	      <ul class="nav navbar-nav">
+
 	      	<li><a href="/GulpAssignment/LoginForm.jsp">Log in</a></li>
+
 	      </ul>
 	    </div>
 	  </div>

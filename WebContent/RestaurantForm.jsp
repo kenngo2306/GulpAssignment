@@ -17,32 +17,24 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Register Restaurant</title>
-<style>
-body {
-	font-family: "Bookman Old Style";
-	color: black;
-	background-color: #a6d2d2;
-	font-size: 15px;
-}
-</style>
+<title>Add Restaurant</title>
 </head>
 <body>
-		<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" style=color:red>GULP!</a>
+	      <a class="navbar-brand" href="#">GULP!</a>
 	    </div>
 	    <div>
 	      <ul class="nav navbar-nav">
 	      	<li><a href="RestaurantList">Restaurant List</a></li>
-	      	<li class = active><a  href="/GulpAssignment/RegisterRestaurant.jsp">Register a Restaurant</a></li>
+	      	<li><a href="/GulpAssignment/RegisterRestaurant.jsp">Register a Restaurant</a></li>
     	    <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${reviewer_name}<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		            <li><a href="Profile">Profile</a></li>
 		            <li role="separator" class="divider"></li>
-       				<li><a href="Login?logout=yes">Log out</a>
+       				<li><a href="Logout">Log out</a>
 		          </ul>
 	        </li>
 			
@@ -54,37 +46,28 @@ body {
 	</nav>
 	<div class= "panle panel-primary col-sm-6 col-sm-offset-3">
 		<div class ="panel-heading">
-		
-			<h1 align = center> New Restaurant</h1>
-			
+			Add Restaurant
 		</div>
 		
 		<div class="panel-body">
-			${message}
-			<form role="form" action="RegisterRestaurant" method = "POST">
+			<form role="form" action="AddRestaurant" method = "POST">
 				<div class="form-group">
 					<label for="name">Name:</label>
-					<input type="text" class="form-control" name="name" required/>
+					<input type="text" class="form-control" name="name"/>
 				</div>
 				
 				<div class="form-group">
-					<label for="address">Address:</label>
-					<input type="text" class="form-control" name="address" required/>
+					<label for="name">Address:</label>
+					<input type="text" class="form-control" name="name"/>
 				</div>
 				
 				<div class="form-group">
-					<label for="description">Description:</label>
-					<input type="text" class="form-control" name="description" required/>
+					<label for="name">Description:</label>
+					<input type="text" class="form-control" name="name"/>
 				</div>
 				
-				<div class = "form-group">
-					<button type="submit" value = "submit" class= "btn btn-default" >Register</button>
-					
-					
-				</div>
-
+				<button type="submit" value = "submit" class= "button btn-primary">Add Restaurant</button>
 			</form>
-			
 		</div>
 	</div>
 </body>
