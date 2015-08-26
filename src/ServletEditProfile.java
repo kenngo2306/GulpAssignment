@@ -42,10 +42,12 @@ public class ServletEditProfile extends HttpServlet {
 		Reviewer reviewer = db.getReviewer(reviewer_id);
 		db.closeConnection();
 		
-		request.setAttribute("reviewer_name", reviewer.getReviewer_Name());
+		request.setAttribute("name", reviewer.getReviewer_Name());
 		request.setAttribute("zipcode", reviewer.getZipcode());
+		request.setAttribute("email", reviewer.getEmail());
 		
 		//forward to EditReviewer.jsp
+		getServletContext().getRequestDispatcher("/EditProfile.jsp").forward(request, response);
 	}
 
 	/**
@@ -53,17 +55,46 @@ public class ServletEditProfile extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//get data from EditReviewer.jsp
-		
-		//validate data
-		
-		// format data
-		
-		//turn data into object
-		
-		//save to database
-		
-		//go back to profile page
+		// get data from EditProfile.jsp
+				HttpSession session = request.getSession();
+				int reviewer_id = (int)session.getAttribute("reviewer_id");
+				String name = request.getParameter("name");
+				String email = request.getParameter("email");
+				String zipcode = request.getParameter("zipcode");
+				
+				//
+				System.out.println(" reviewer_id" + reviewer_id);
+				System.out.println(" name" + name);
+				System.out.println(" email" + email);
+				System.out.println(" zipcode" + zipcode);
+				// validate data
+				if(
+						 !Validator.validateNullEmptyString(name) 
+						|| !Validator.validateEmail(email)
+						|| !Validator.validateNullEmptyString(zipcode))
+				{
+					response.sendError(400,"Invalid Inputs!");
+				}
+				else
+				{
+					// convert data
+					
+					//turn data into object
+					Reviewer reviewer = new Reviewer();
+					reviewer.setReviewer_id(reviewer_id);
+					reviewer.setEmail(email);
+					reviewer.setZipcode(zipcode);
+					reviewer.setReviewer_Name(name);
+					
+					//save into database
+					Database db = new Database();
+					db.openConnection();
+					db.editProfile(reviewer);
+					db.closeConnection();
+					
+					//go back to restaurant rating
+					session.setAttribute("reviewer_name", name);
+					getServletContext().getRequestDispatcher("/Profile").forward(request, response);
+				}
 	}
-
 }

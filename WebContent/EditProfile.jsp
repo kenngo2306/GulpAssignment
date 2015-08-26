@@ -17,7 +17,7 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Ratings</title>
+<title>Edit Restaurant</title>
 <style>
 body {
 	font-family: "Bookman Old Style";
@@ -28,7 +28,7 @@ body {
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
+		<nav class="navbar navbar-inverse">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
 	      <a class="navbar-brand" style=color:red>GULP!</a>
@@ -36,7 +36,7 @@ body {
 	    <div>
 	      <ul class="nav navbar-nav">
 	      	<li><a href="RestaurantList">Restaurant List</a></li>
-	      	<li><a href="/GulpAssignment/RegisterRestaurant.jsp">Register Restaurant</a></li>
+	      	<li class = active><a  href="/GulpAssignment/RegisterRestaurant.jsp">Register a Restaurant</a></li>
     	    <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${reviewer_name}<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
@@ -52,7 +52,42 @@ body {
 	    </div>
 	  </div>
 	</nav>
-	${restaurantData}
-	${ratingData}
+	<div class= "panle panel-primary col-sm-6 col-sm-offset-3">
+		<div class ="panel-heading">
+		
+			<h1 align = center> Edit Restaurant</h1>
+			
+		</div>
+		
+		<div class="panel-body">
+			
+			<form role="form" action="EditProfile" method = "POST">
+				
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type="text" class="form-control" name="name" value='${name}' required/>
+				</div>
+				
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input type="email" class="form-control" name="email" value='${email}' required/>
+				</div>
+				
+				<div class="form-group">
+					<label for="zipcode">ZipCode:</label>
+					<input type="text" class="form-control" name="zipcode" value='${zipcode}' required/>
+				</div>
+				
+				<div class = "form-group">
+					<button type="submit" value = "submit" class= "btn btn-success" >Save</button>
+					
+					
+					<a href="Profile" class="btn btn-danger">Cancel</a>
+				</div>
+
+			</form>
+			
+		</div>
+	</div>
 </body>
 </html>
