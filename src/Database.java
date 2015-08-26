@@ -100,7 +100,7 @@ public class Database {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
 			preStatement.setString(1, user.getReviewer_Name());
 			preStatement.setString(2, user.getEmail());
-			preStatement.setString(3, user.getEmail());
+			preStatement.setString(3, user.getZipcode());
 			preStatement.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -114,7 +114,7 @@ public class Database {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
 			preStatement.setString(1, reviewer.getReviewer_Name());
 			preStatement.setString(2, reviewer.getEmail());
-			preStatement.setString(3, reviewer.getEmail());
+			preStatement.setString(3, reviewer.getZipcode());
 			preStatement.setInt(4, reviewer.getReviewer_id());
 			preStatement.executeQuery();
 		} catch (SQLException e) {
