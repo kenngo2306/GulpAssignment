@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServletRestaurantDetail
@@ -39,10 +38,7 @@ public class ServletRestaurantDetail extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("dopost in servlet restaurant detail");
 		String restaurant_idStr = request.getParameter("restaurant_id");
-		
-		//HttpSession session = request.getSession();
-		//session.setAttribute("restaurant_id", Integer.parseInt(restaurant_idStr));
-		
+				
 		if(!Validator.validateInt(restaurant_idStr))
 		{
 			response.sendError(400,"Invalid Input");
@@ -53,6 +49,7 @@ public class ServletRestaurantDetail extends HttpServlet {
 			String restaurant_info = "";
 			
 			Database db = new Database();
+			db.openConnection();
 			Restaurant restaurant = db.getRestaurant(restaurant_id);
 			
 			restaurant_info += "<p>";
@@ -66,7 +63,7 @@ public class ServletRestaurantDetail extends HttpServlet {
 						restaurant_info += "&#9733;";
 					}
 			restaurant_info += "</p>";
-			
+			db.closeConnection();
 			request.setAttribute("restaurant_info", restaurant_info);
 			getServletContext().getRequestDispatcher("/RateRestaurant.jsp").forward(request, response);
 		}

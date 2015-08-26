@@ -28,7 +28,11 @@ public class ServletLogin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		if(request.getParameter("logout").equalsIgnoreCase("yes")){
+			HttpSession session = request.getSession();
+			session.invalidate();
+			getServletContext().getRequestDispatcher("/LoginForm.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -36,6 +40,7 @@ public class ServletLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		System.out.println("dopost");
 		String email = request.getParameter("email");
 		System.out.println("email = "  + email);
@@ -48,6 +53,7 @@ public class ServletLogin extends HttpServlet {
 		{
 			//do db stuff
 			Database db = new Database();
+			db.openConnection();
 			Reviewer reviewer = db.getReviewer(email);
 			
 			if(reviewer.getEmail().trim().equals(""))
@@ -65,10 +71,8 @@ public class ServletLogin extends HttpServlet {
 				session.setAttribute("reviewer_id", reviewer.getReviewer_id());
 				getServletContext().getRequestDispatcher("/RestaurantList").forward(request, response);
 			}
-			
-			
-			
-			
+			db.closeConnection();
+				
 		}
 	}
 

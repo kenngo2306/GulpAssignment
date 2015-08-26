@@ -69,7 +69,7 @@ public class ServletProfile extends HttpServlet {
 		{
 			Restaurant restaurant = db.getRestaurant(rating.getRestaurant_id());
 					
-			ratingData += "<div class='panel panel-info col-sm-6 col-sm-offset-3'>";
+			ratingData += "<div class='panel panel-info col-sm-8'>";
 			ratingData += "<div class='panel-heading'>";	
 			ratingData += "<div class='row'>";
 			ratingData += "<div class='col-sm-4'> Restaurant:";

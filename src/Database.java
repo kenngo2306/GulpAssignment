@@ -57,7 +57,6 @@ public class Database {
 		reviewerObj = new Reviewer();
 		ResultSet rs = null;
 		try {
-			openConnection();
 			PreparedStatement preStatement = conn.prepareStatement(sql);
 			preStatement.setInt(1, reviewer_id);
 			rs=preStatement.executeQuery();
@@ -152,7 +151,6 @@ public class Database {
 	
 	public void addRestaurant(Restaurant newRestaurant) {
 		String sql= "Insert into restaurant(RESTAURANT_NAME,ADDRESS,Description) values(?, ?, ?)";
-		openConnection();
 		try {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
 			preStatement.setString(1, newRestaurant.getRestaurant_Name());

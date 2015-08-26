@@ -52,13 +52,13 @@ a:active {
 	    <div>
 	      <ul class="nav navbar-nav">
 	      	<li class="active"><a  href="RestaurantList">Restaurant List</a></li>
-	      	<li><a href="/GulpAssignment/RegisterRestaurant.jsp">Register a Restaurant</a></li>
+	      	<li><a href="/GulpAssignment/RegisterRestaurant.jsp">Register Restaurant</a></li>
     	    <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User name<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		            <li><a href="Profile">Profile</a></li>
 		            <li role="separator" class="divider"></li>
-       				<li><a href="LoginForm">Log out</a>
+       				<li><a href="Login?logout=yes">Log out</a>
 		          </ul>
 	        </li>
 			

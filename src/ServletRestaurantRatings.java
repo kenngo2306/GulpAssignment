@@ -50,7 +50,7 @@ public class ServletRestaurantRatings extends HttpServlet {
 			int restaurant_id = Integer.parseInt(restaurant_idStr);
 			
 			Database db = new Database();
-			
+			db.openConnection();
 			ArrayList<Ratings> ratings = db.getRatings(restaurant_id);
 			
 			String ratingData = "";
@@ -79,7 +79,7 @@ public class ServletRestaurantRatings extends HttpServlet {
 				ratingData += "</div>";		
 				ratingData += "</div>";
 			}
-			
+			db.closeConnection();
 			request.setAttribute("ratingData", ratingData);
 			getServletContext().getRequestDispatcher("/RestaurantRatings.jsp").forward(request, response);
 		}
