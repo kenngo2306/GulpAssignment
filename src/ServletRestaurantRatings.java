@@ -62,8 +62,12 @@ public class ServletRestaurantRatings extends HttpServlet {
 				ratingData += "<div class='col-sm-4'> UserID:";
 				ratingData += rating.getUser_id();
 				ratingData += "</div>";
-				ratingData += "<div class='col-sm-4'> Rating:";
-				ratingData += rating.getStars();
+				ratingData += "<div class='col-sm-4'> Rating: ";
+				for(int i = 1; i<= rating.getStars(); i++)
+				{
+					ratingData += "&#9733;";
+				}
+				
 				ratingData += "</div>";
 				ratingData += "<div class='col-sm-4'> Date:";
 				ratingData += rating.getReviewDate();

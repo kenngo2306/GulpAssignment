@@ -104,7 +104,10 @@ public class ServletRestaurantList extends HttpServlet {
 			}
 			else
 			{
-				tableData += restaurant.getUser_rating();
+				for(int i = 1; i <= restaurant.getUser_rating(); i ++)
+				{
+					tableData += "&#9733;";
+				}
 			}
 			
 			tableData += "</td>";
