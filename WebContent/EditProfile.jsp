@@ -72,7 +72,10 @@ body {
 					<label for="email">Email:</label>
 					<input type="email" class="form-control" name="email" value='${email}' required/>
 				</div>
-				
+				<% if (request.getAttribute("error") != null && request.getAttribute("error").toString().length()>0) { %>
+								
+					<div class="alert alert-danger"><p>  ${error}</p></div>
+				<% } %>	
 				<div class="form-group">
 					<label for="zipcode">ZipCode:</label>
 					<input type="text" class="form-control" name="zipcode" value='${zipcode}' required/>

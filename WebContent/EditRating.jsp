@@ -84,7 +84,7 @@ body {
 					<% if(Integer.parseInt(request.getAttribute("stars").toString()) == 1) {%>
 						<input type="radio" name="stars" value ="1" checked>&#9733;<br>
 					<%} else { %>
-						<input type="radio" name="stars" value ="5">&#9733;<br>
+						<input type="radio" name="stars" value ="1">&#9733;<br>
 					<%}%>
 					
 					
