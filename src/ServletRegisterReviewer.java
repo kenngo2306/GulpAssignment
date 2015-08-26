@@ -44,6 +44,9 @@ public class ServletRegisterReviewer extends HttpServlet {
 		Reviewer reviewer = new Reviewer();
 		Database db = new Database();
 		db.openConnection();
+		if(db.duplicateReviewer(email)){
+			System.out.println("duplicate value");
+		}
 		//validate inputs
 		if(!Validator.validateNullEmptyString(name) || !Validator.validateNullEmptyString(email) || !Validator.validateNullEmptyString(zipcode))
 		{

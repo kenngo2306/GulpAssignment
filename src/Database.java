@@ -51,6 +51,25 @@ public class Database {
 		return reviewerObj;
 	}
 	
+	public boolean duplicateReviewer(String email) {
+		String sql= "Select * from reviewer where email= ? ";
+		System.out.println(sql);
+		reviewerObj = new Reviewer();
+		ResultSet rs = null;
+		try {
+			openConnection();
+			PreparedStatement preStatement = conn.prepareStatement(sql);
+			preStatement.setString(1, email);
+			rs=preStatement.executeQuery();
+			if(rs.next()){
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 	public Reviewer getReviewer(int reviewer_id) {
 		String sql= "Select * from reviewer where REVIEWER_ID= ? ";
 		System.out.println(sql);
@@ -89,6 +108,20 @@ public class Database {
 		}
 	}
 
+	public void editProfile(Reviewer reviewer) {
+		String sql= "Update reviewer set REVIEWER_NAME =?, EMAIL = ? ,ZIPCODE=? where Reviewer_id =?";
+		try {
+			PreparedStatement preStatement = conn.prepareStatement(sql);
+			preStatement.setString(1, reviewer.getReviewer_Name());
+			preStatement.setString(2, reviewer.getEmail());
+			preStatement.setString(3, reviewer.getZipcode());
+			preStatement.setInt(4, reviewer.getReviewer_id());
+			preStatement.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public ArrayList<Restaurant> getAllRestaurant(int reviewerId) {
 		String sql= "SELECT rs.RESTAURANT_ID, rs.RESTAURANT_NAME, rs.ADDRESS,"+
 					"rs.Description, NVL(avg(stars),0) AS AVERAGE,"
@@ -118,6 +151,7 @@ public class Database {
 		}
 		return restArray;
 	}
+	
 	
 	public Restaurant getRestaurant(int restaurant_id) {
 		String sql= "SELECT rs.RESTAURANT_ID, rs.RESTAURANT_NAME, rs.ADDRESS, rs.Description, "
@@ -159,6 +193,20 @@ public class Database {
 			preStatement.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void editRestaurant(Restaurant restaurant) {
+		String sql= "Update restaurant set RESTAURANT_NAME =?, ADDRESS = ? ,Description=? where restaurant_id =?";
+		try {
+			PreparedStatement preStatement = conn.prepareStatement(sql);
+			preStatement.setString(1, restaurant.getRestaurant_Name());
+			preStatement.setString(2, restaurant.getAddress());
+			preStatement.setString(3, restaurant.getDescription());
+			preStatement.setInt(4, restaurant.getRestaurant_id());
+			preStatement.executeQuery();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
