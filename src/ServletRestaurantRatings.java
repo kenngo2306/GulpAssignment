@@ -51,6 +51,27 @@ public class ServletRestaurantRatings extends HttpServlet {
 			
 			Database db = new Database();
 			db.openConnection();
+			
+			Restaurant restaurant = db.getRestaurant(restaurant_id);
+			String restaurantData = "";
+			restaurantData += "<div class='panel panel-primary col-sm-8'>";
+			restaurantData += "<div class='panel-heading'>";	
+			restaurantData +=	"Name: " + restaurant.getRestaurant_Name();
+			restaurantData += "</div>";
+			
+			restaurantData += "<div class='panel-body'>";	
+			restaurantData +=	"Address: " + restaurant.getAddress();
+			restaurantData += "<br>";
+			restaurantData +=	"Description: " + restaurant.getDescription();
+			restaurantData += "<br>";
+			restaurantData += "Average Rating: " + restaurant.getAvgRating(); 
+			restaurantData += "<br>";
+			restaurantData += "<a href='EditRestaurant?restaurant_id="+ restaurant_id +"'><span class='glyphicon glyphicon-pencil'></span>Edit</a>";
+			restaurantData += "</div>";		
+			restaurantData += "</div>";
+			
+			request.setAttribute("restaurantData", restaurantData);
+			
 			ArrayList<Ratings> ratings = db.getRatings(restaurant_id);
 			
 			String ratingData = "";
