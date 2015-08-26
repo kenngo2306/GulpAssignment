@@ -30,7 +30,7 @@
 	      	<li><a href="RestaurantList">Restaurant List</a></li>
 	      	<li><a href="/GulpAssignment/RegisterRestaurant.jsp">Register a Restaurant</a></li>
     	    <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User name<span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${reviewer_name}<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		            <li><a href="Profile">Profile</a></li>
 		            <li role="separator" class="divider"></li>
@@ -52,18 +52,16 @@
 			<form action="AddReview" method ="POST">
 				<div class="form-group">
 					<input type="hidden" name="restaurant_id" value="<%= request.getParameter("restaurant_id") %>"/>
-					<label for="stars">Stars:</label>
-					<select name="stars" style="color:yellow;" class="form-control">
-						<option value = "1" style="color:yellow;">&#9733;</option>
-						
-						<option value = "2">&#9733;&#9733;</option>
-											
-						<option value = "3">&#9733;&#9733;&#9733;</option>
-											
-						<option value = "4">&#9733;&#9733;&#9733;&#9733;</option>
-											
-						<option value = "5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
-					</select>
+					<label for="stars">Stars:</label> <br>
+					<input type="radio" name="stars" value ="5">&#9733;&#9733;&#9733;&#9733;&#9733;<br>
+					<input type="radio" name="stars" value ="4">&#9733;&#9733;&#9733;&#9733;<br>
+					<input type="radio" name="stars" value ="3">&#9733;&#9733;&#9733;<br>
+					<input type="radio" name="stars" value ="2">&#9733;&#9733;<br>
+					<input type="radio" name="stars" value ="1">&#9733;<br>
+					
+					
+					
+					
 				</div>
 				<div class="form-group">
 					<label for="description">Feedback/Comments:</label>

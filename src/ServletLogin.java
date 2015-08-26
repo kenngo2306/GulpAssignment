@@ -63,6 +63,8 @@ public class ServletLogin extends HttpServlet {
 				System.out.println("login success");
 				HttpSession session = request.getSession();
 				session.setAttribute("reviewer_id", reviewer.getReviewer_id());
+				System.out.println("reviewer_name = " + reviewer.getReviewer_Name());
+				session.setAttribute("reviewer_name", reviewer.getReviewer_Name());
 				getServletContext().getRequestDispatcher("/RestaurantList").forward(request, response);
 			}
 			
