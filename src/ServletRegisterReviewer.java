@@ -43,7 +43,7 @@ public class ServletRegisterReviewer extends HttpServlet {
 		String zipcode = request.getParameter("zipcode");
 		Reviewer reviewer = new Reviewer();
 		Database db = new Database();
-		
+		db.openConnection();
 		//validate inputs
 		if(!Validator.validateNullEmptyString(name) || !Validator.validateNullEmptyString(email) || !Validator.validateNullEmptyString(zipcode))
 		{
@@ -59,6 +59,7 @@ public class ServletRegisterReviewer extends HttpServlet {
 			
 			//get the reviewer id
 			reviewer = db.getReviewer(reviewer.getEmail());
+			db.closeConnection();
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("reviewer_id", reviewer.getReviewer_id());

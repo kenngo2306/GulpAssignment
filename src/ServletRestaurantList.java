@@ -42,6 +42,7 @@ public class ServletRestaurantList extends HttpServlet {
 		System.out.println("dopost");
 		
 		Database db = new Database();
+		db.openConnection();
 		HttpSession session = request.getSession();
 		int reviewer_id = (int)session.getAttribute("reviewer_id");
 		ArrayList<Restaurant> restaurants = db.getAllRestaurant(reviewer_id);
@@ -114,7 +115,7 @@ public class ServletRestaurantList extends HttpServlet {
 			
 			tableData += "</tr>";
 		}
-		
+		db.closeConnection();
 		request.setAttribute("tableData", tableData);
 		getServletContext().getRequestDispatcher("/RestaurantList.jsp").forward(request, response);
 		

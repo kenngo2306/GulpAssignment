@@ -54,7 +54,7 @@ public class ServletAddReview extends HttpServlet {
 			HttpSession session = request.getSession();
 			int reviewer_id = (int)session.getAttribute("reviewer_id");
 			Database db = new Database();
-			
+			db.openConnection();
 			Ratings rating = new Ratings();
 			rating.setDescription(description);
 			rating.setRestaurant_id(Integer.parseInt(restaurant_idStr));
@@ -62,7 +62,7 @@ public class ServletAddReview extends HttpServlet {
 			rating.setUser_id(reviewer_id);
 			
 			db.addRating(rating);
-			
+			db.closeConnection();
 			getServletContext().getRequestDispatcher("/RestaurantList").forward(request, response);
 		}
 		

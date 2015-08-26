@@ -1,7 +1,4 @@
 
-
-import java.text.SimpleDateFormat;
-
 public class Validator
 {
 	public static boolean validateEmail(String emailStr)
