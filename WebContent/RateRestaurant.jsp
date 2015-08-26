@@ -53,8 +53,8 @@
 				<div class="form-group">
 					<input type="hidden" name="restaurant_id" value="<%= request.getParameter("restaurant_id") %>"/>
 					<label for="stars">Stars:</label>
-					<select name="stars" class="form-control">
-						<option value = "1">&#9733;</option>
+					<select name="stars" style="color:yellow;" class="form-control">
+						<option value = "1" style="color:yellow;">&#9733;</option>
 						
 						<option value = "2">&#9733;&#9733;</option>
 											
