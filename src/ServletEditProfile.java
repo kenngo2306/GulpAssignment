@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/EditProfile")
 public class ServletEditProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+       String error ="";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -47,6 +47,7 @@ public class ServletEditProfile extends HttpServlet {
 		request.setAttribute("email", reviewer.getEmail());
 		
 		//forward to EditReviewer.jsp
+		request.setAttribute("error", error);
 		getServletContext().getRequestDispatcher("/EditProfile.jsp").forward(request, response);
 	}
 
@@ -89,12 +90,22 @@ public class ServletEditProfile extends HttpServlet {
 					//save into database
 					Database db = new Database();
 					db.openConnection();
-					db.editProfile(reviewer);
-					db.closeConnection();
-					
-					//go back to restaurant rating
-					session.setAttribute("reviewer_name", name);
-					getServletContext().getRequestDispatcher("/Profile").forward(request, response);
+					if(db.duplicateReviewer(email))
+					{
+						error = "Email has already been taken";
+						request.setAttribute("error", error);
+						getServletContext().getRequestDispatcher("/EditProfile").forward(request, response);
+					}
+					else
+					{
+						db.editProfile(reviewer);
+						db.closeConnection();
+						
+						//go back to restaurant rating
+						session.setAttribute("reviewer_name", name);
+						getServletContext().getRequestDispatcher("/Profile").forward(request, response);
+					}
+
 				}
 	}
 }
