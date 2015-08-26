@@ -23,6 +23,12 @@ public class ServletLogin extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    String error="";
+    @Override
+    public void init()
+    {
+    	error = "";
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -59,7 +65,7 @@ public class ServletLogin extends HttpServlet {
 			if(reviewer.getEmail().trim().equals(""))
 			{
 				System.out.println("login failed");
-				String error= "Invalid Credential";
+				error= "Invalid Credential";
 				request.setAttribute("error", error);
 				getServletContext().getRequestDispatcher("/LoginForm.jsp").forward(request, response);
 				

@@ -17,6 +17,20 @@ user_id Number(10) References Reviewer(Reviewer_id),
 stars Number(10),
 description Varchar2(255));
 
+CREATE TABLE COMMENT
+(
+  comment_id INTEGER PRIMARY KEY,
+  rating_id INTEGER REFERENCES ratings(rating_id),
+  comment_date DATE,
+  comment_text VARCHAR2(255)
+)
+
+CREATE SEQUENCE seq_Comment
+ MINVALUE 1
+ START WITH 1
+ INCREMENT BY 1
+ CACHE 10;
+ 
 CREATE SEQUENCE seq_Restaurant
  MINVALUE 1
  START WITH 1
@@ -64,6 +78,13 @@ BEGIN
   :new.Rating_id := seq_Ratings.nextval;
 END;
 
+CREATE OR REPLACE TRIGGER Comment_Trigger
+ BEFORE INSERT ON Comment
+  FOR EACH ROW
+BEGIN
+  :new.comment_id := seq_Comment.nextval;
+END;
+
 Insert into reviewer(REVIEWER_NAme,EMAIL,ZIPCODE) values('Ken', 'ken@infosys.com', '020877');
 Insert into reviewer(REVIEWER_NAme,EMAIL,ZIPCODE) values('Viki', 'viki@infosys.com', '020877');
 
@@ -101,3 +122,4 @@ ON rs.RESTAURANT_ID=ra.RESTAURANT_ID group by rs.RESTAURANT_ID,
   order by AVERAGE desc;
 
 select * from ratings where RESTAURANT_ID=2 order by REVIEWDATE desc;
+

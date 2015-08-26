@@ -57,12 +57,16 @@ body {
 					<label for="email">Email:</label>
 					<input type="email" class="form-control" name="email"/>
 				</div>
+				<% if (request.getAttribute("error") != null && request.getAttribute("error").toString().length()>0) { %>
+					
+					<div class="alert alert-danger"><p>  ${error}</p></div>
+				<% } %>	
 				<div class="form-group">
 					<label for="zipcode">ZipCode:</label>
 					<input type="zipcode" class="form-control" name="zipcode"/>
 				</div>
-				
-				<button type="submit" value = "submit" class= "button btn-primary form-comtrol">Sign in</button>
+
+				<button type="submit" value = "submit" class= "button btn-primary form-comtrol">Register</button>
 			
 			</form>
 		</div>
