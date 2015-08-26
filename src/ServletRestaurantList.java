@@ -105,10 +105,12 @@ public class ServletRestaurantList extends HttpServlet {
 			}
 			else
 			{
+				tableData += "<a href='EditRating?restaurant_id="+ restaurant.getRestaurant_id() + "'>";
 				for(int i = 1; i <= restaurant.getUser_rating(); i ++)
 				{
-					tableData += "&#9733;";
+					tableData +="&#9733;";
 				}
+				tableData+= "</a>";
 			}
 			
 			tableData += "</td>";

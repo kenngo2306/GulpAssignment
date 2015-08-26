@@ -27,7 +27,7 @@ public class ServletEditRestaurant extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("dopost");
+		System.out.println("doget");
 		int restaurant_id = Integer.parseInt(request.getParameter("restaurant_id"));
 		Database db = new Database();
 		

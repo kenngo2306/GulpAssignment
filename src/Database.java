@@ -73,7 +73,6 @@ public class Database {
 	public Reviewer getReviewer(int reviewer_id) {
 		String sql= "Select * from reviewer where REVIEWER_ID= ? ";
 		System.out.println(sql);
-		reviewerObj = new Reviewer();
 		ResultSet rs = null;
 		try {
 			PreparedStatement preStatement = conn.prepareStatement(sql);
@@ -122,6 +121,43 @@ public class Database {
 		}
 	}
 	
+	public Ratings getRating(int restaurant_id, int reviewer_id) {
+		String sql= "Select * from ratings where restaurant_id= ? and user_id=? ";
+		System.out.println(sql);
+		
+		ResultSet rs = null;
+		try {
+			PreparedStatement preStatement = conn.prepareStatement(sql);
+			preStatement.setInt(1, restaurant_id);
+			preStatement.setInt(2, reviewer_id);
+			rs=preStatement.executeQuery();
+			if(rs.next()){
+				ratingObj = new Ratings();
+				ratingObj.setRestaurant_id(restaurant_id);
+				ratingObj.setUser_id(reviewer_id);
+				ratingObj.setReviewDate(rs.getDate(6));
+				ratingObj.setDescription(rs.getString(5));
+				ratingObj.setStars(rs.getInt(4));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ratingObj;
+	}
+	public void editRating(Ratings rating) {
+		String sql= "Update ratings set  STARS=?,DESCRIPTION=?,REVIEWDATE=sysdate where USER_ID =? and RESTAURANT_ID =?";
+		try {
+			PreparedStatement preStatement = conn.prepareStatement(sql);
+			preStatement.setInt(1, rating.getStars());
+			preStatement.setString(2, rating.getDescription());
+			preStatement.setInt(3, rating.getUser_id());
+			preStatement.setInt(4, rating.getRestaurant_id());
+			preStatement.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	public ArrayList<Restaurant> getAllRestaurant(int reviewerId) {
 		String sql= "SELECT rs.RESTAURANT_ID, rs.RESTAURANT_NAME, rs.ADDRESS,"+
 					"rs.Description, NVL(avg(stars),0) AS AVERAGE,"
