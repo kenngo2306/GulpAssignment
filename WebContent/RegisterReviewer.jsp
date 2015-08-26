@@ -18,9 +18,18 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
 <title>Register User</title>
+<style>
+body {
+	font-family: "Bookman Old Style";
+	color: black;
+	background-color: #a6d2d2;
+	font-size: 15px;
+}
+</style>
 </head>
+
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-inverset">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="#">GULP!</a>
