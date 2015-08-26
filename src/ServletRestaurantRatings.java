@@ -80,8 +80,11 @@ public class ServletRestaurantRatings extends HttpServlet {
 				ratingData += "<div class='panel panel-warning col-sm-6 col-sm-offset-3'>";
 				ratingData += "<div class='panel-heading'>";	
 				ratingData += "<div class='row'>";
-				ratingData += "<div class='col-sm-4'> UserID:";
-				ratingData += rating.getUser_id();
+				ratingData += "<div class='col-sm-4'> User: ";
+				
+				//get user name from user id
+				Reviewer reviewer2 = db.getReviewer(rating.getUser_id());
+				ratingData += reviewer2.getReviewer_Name();
 				ratingData += "</div>";
 				ratingData += "<div class='col-sm-4'> Rating: ";
 				for(int i = 1; i<= rating.getStars(); i++)

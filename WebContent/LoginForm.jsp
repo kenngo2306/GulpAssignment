@@ -36,7 +36,7 @@ body {
 	font-family: "Bookman Old Style";
 	color: black;
 	background-color: #a6d2d2;
-	font-size: 25px;
+	font-size: 15px;
 }
 </style>
 </head>
@@ -53,15 +53,23 @@ body {
 			<h1 align=center>
 				<b>Log in to your account</b>
 			</h1>
-			</div>
-			<div class="panle panel-primary col-sm-6 col-sm-offset-3">
+			
+
+			
+		
+		</div>
+			<div class="panel panel-primary col-sm-6 col-sm-offset-3">
 
 					<form role="form" action="Login" method="POST">
 						<div class="form-group">
 							<label for="email">Email:</label> <input type="email"
 								class="form-control" name="email" />
+							<% if (request.getAttribute("error") != null && request.getAttribute("error").toString().length()>0) { %>
+								
+								<div class="alert alert-danger"><p>  ${error}</p></div>
+							<% } %>	
 						</div>
-
+						
 						<div class="form-group">
 							<button type="submit" value="submit" class="btn btn-default">Sign
 								in</button>
