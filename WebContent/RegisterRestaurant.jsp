@@ -31,7 +31,7 @@ body {
 		<nav class="navbar navbar-inverse">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">GULP!</a>
+	      <a class="navbar-brand" style=color:red>GULP!</a>
 	    </div>
 	    <div>
 	      <ul class="nav navbar-nav">
@@ -42,7 +42,7 @@ body {
 		          <ul class="dropdown-menu">
 		            <li><a href="Profile">Profile</a></li>
 		            <li role="separator" class="divider"></li>
-       				<li><a href="Logout">Log out</a>
+       				<li><a href="Login?logout=yes">Log out</a>
 		          </ul>
 	        </li>
 			

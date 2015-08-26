@@ -40,6 +40,7 @@ public class ServletRegisterRestaurant extends HttpServlet {
 		String description = request.getParameter("description");
 		
 		Database db = new Database();
+		db.openConnection();
 		Restaurant restaurant = new Restaurant();
 		restaurant.setAddress(address);
 		restaurant.setDescription(description);
@@ -47,6 +48,7 @@ public class ServletRegisterRestaurant extends HttpServlet {
 		
 		db.addRestaurant(restaurant);
 		
+		db.closeConnection();
 		String message = "<div class ='success' ><h1>Restaurant Added!</h1></div>";
 		request.setAttribute("message", message);
 		getServletContext().getRequestDispatcher("/RegisterRestaurant.jsp").forward(request, response);
